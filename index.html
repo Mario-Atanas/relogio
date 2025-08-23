@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+    <link href="css/styles.css" rel="stylesheet">
+	<title>WATCH-MAN</title>
+  </head>
+  <body>
+	<header>
+	  <nav>
+		  <a href="#" class="logo">WATCH-MAN</a>
+		  <ul>
+			<li><a href="">Início</a></li>
+			<!--<li><a href="#">Produtos</a></li>-->
+			<li><a href="#rodape">Contacto</a></li>
+		  </ul>
+	  </nav>
+	  <section>
+		<div>
+		  <h1>Descubra <br>A maestria <br>em cada peça</h1>
+		  <button id="botao_header">VEJA ABAIXO</button>
+		</div>
+		 <img src="img/relogio.png" >
+	  </section>
+	</header>
+	<main>
+	  <h2>Produtos </h2>
+	  <section class="produtos">
+		<article class="card">
+		  <img src="img/relogio_classico.jpg">
+		  <h1>Relógio Clássico</h1>
+		  <p>600,000.00 AOA</p>
+		  <button id="botao1">Compre Já</button>
+		</article>
+		<article class="card">
+		  <img src="img/relogio_casual.jpg">
+		  <h1>Relógio Casual</h1>
+		  <p>260,000.00 AOA</p>
+		  <button id="botao2">Compre Já</button>
+		</article>
+		<article class="card">
+		  <img src="img/relogio_couro.png">
+		  <h1>Relógio de Couro</h1>
+		  <p>750,000.00</p>
+		  <button id="botao3">Compre Já</button>
+		</article>
+	  </section>
+	</main>
+	<footer id="rodape">
+	  <div>
+	  <nav class="contacto">
+		<h2>Contactos</h2>
+		<ul>
+		  <li><a href="mailto:marioatanasio3@gmail.com">MARIOATANASIO3@GMAIL.COM</a></li>
+		  <li><a href="tel:+244957440389">+244-957 440 389</a></li>
+		</ul>
+	  </nav>
+	  <nav class="redes_socias">
+		<h2>Redes Sociais</h2>
+		<ul>
+		  <li><a href="https://facebook.com/seuPerfil">FACEBOOK</a></li>
+		  <li><a href="https://instagram.com/seuPerfil">INSTAGRAM</a></li>
+		</ul>
+	  </nav>
+	  </div>
+	  <p>&copy; WATCH-MAN 2025 Todos os direitos reservados</p>
+	</footer>
+	
+	<div class="modal" >
+	  <div class="modal_card">
+		<span id="fechar_modal">&times;</span>
+		<h2>Finalizar Compra</h2>
+		<h3 id="modal_descricao">Relógio de Couro</h3>
+		<p id="modal_preco">750,000,00</p>
+		<div class="formulario">
+		  <input type="text" placeholder="Nome" requered>
+		  <input type="email" placeholder="E-mail">
+		  <input type="text" placeholder="Endereço">
+		  <button id="botao_modal">Pagar</button>
+		</div>
+	  </div>
+	</div>
+	
+  </body>
+  <script>
+	const botoes = document.querySelectorAll('button:not(#botao_header,#botao_modal)');
+const fechar_botao = document.getElementById('fechar_modal');
+const botao_modal = document.getElementById('botao_modal');
+const modal = document.querySelector('.modal');
+
+const produtos = {
+  botao1: { descricao: 'RELOGIO CLÁSSICO', preco: '600,000.00 AOA' },
+  botao2: { descricao: 'RELOGIO CASUAL', preco: '260,000.00 AOA' },
+  botao3: { descricao: 'RELOGIO DE COURO', preco: '750,000.00 AOA' },
+};
+
+botoes.forEach(function(botao) {
+  botao.addEventListener('click', function(event) {
+    const produto = produtos[event.currentTarget.id];
+    document.getElementById("modal_descricao").innerText = produto.descricao;
+    document.getElementById("modal_preco").innerText = produto.preco;
+    modal.style.display = 'flex';
+  });
+});
+
+fechar_botao.addEventListener('click', function() {
+  modal.style.display = "none";
+});
+
+botao_modal.addEventListener('click', function() {
+  const inputs = document.querySelectorAll('.modal_card input');
+  if (Array.prototype.every.call(inputs, function(input){ if( input.value.trim() !== '') {
+    modal.style.display = "none";
+    setTimeout(function() {
+      alert("Compra concluida");
+    }, 600);
+  } else {
+    alert("Preencha todos os campos");
+  }
+}));});
+
+	</script>
+</html>		
